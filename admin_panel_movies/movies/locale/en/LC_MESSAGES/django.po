@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-24 23:13+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\movies\apps.py:8
+msgid "movies"
+msgstr ""
+
+#: .\movies\models\film_work.py:12 .\movies\models\film_work.py:37
+msgid "Фильм"
+msgstr ""
+
+#: .\movies\models\film_work.py:13
+msgid "Сериал"
+msgstr ""
+
+#: .\movies\models\film_work.py:14
+msgid "Передача"
+msgstr ""
+
+#: .\movies\models\film_work.py:16
+msgid "Название фильма"
+msgstr ""
+
+#: .\movies\models\film_work.py:17
+msgid "Описание фильма"
+msgstr ""
+
+#: .\movies\models\film_work.py:18
+msgid "Дата выхода фильма"
+msgstr ""
+
+#: .\movies\models\film_work.py:22
+msgid "Рейтинг"
+msgstr ""
+
+#: .\movies\models\film_work.py:30
+msgid "Тип фильма"
+msgstr ""
+
+#: .\movies\models\film_work.py:32
+msgid "Сертификат"
+msgstr ""
+
+#: .\movies\models\film_work.py:33
+msgid "Файл"
+msgstr ""
+
+#: .\movies\models\film_work.py:38
+msgid "Фильмы"
+msgstr ""
+
+#: .\movies\models\film_work.py:54
+msgid "Актер"
+msgstr ""
+
+#: .\movies\models\film_work.py:55
+msgid "Режиссер"
+msgstr ""
+
+#: .\movies\models\film_work.py:56
+msgid "Сценарист"
+msgstr ""
+
+#: .\movies\models\film_work.py:60
+msgid "Роль"
+msgstr ""
+
+#: .\movies\models\genre.py:8
+msgid "Название"
+msgstr ""
+
+#: .\movies\models\genre.py:10
+msgid "Описание"
+msgstr ""
+
+#: .\movies\models\genre.py:16
+msgid "Жанр"
+msgstr ""
+
+#: .\movies\models\genre.py:17
+msgid "Жанры"
+msgstr ""
+
+#: .\movies\models\person.py:8
+msgid "Мужской"
+msgstr ""
+
+#: .\movies\models\person.py:9
+msgid "Женский"
+msgstr ""
+
+#: .\movies\models\person.py:13
+msgid "Полное имя"
+msgstr ""
+
+#: .\movies\models\person.py:14
+msgid "Пол"
+msgstr ""
+
+#: .\movies\models\person.py:20
+msgid "Персона"
+msgstr ""
+
+#: .\movies\models\person.py:21
+msgid "Персоны"
+msgstr ""

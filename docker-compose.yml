@@ -1,0 +1,60 @@
+
+services:
+  init_db_etl:
+    build: ./init_db_etl
+    env_file:
+      - ./env/.env.db
+    container_name: init_db_etl
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+    restart: "no"
+    entrypoint: ["./wait-for-postgres.sh", "postgres_db", "python", "main.py"]
+
+  nginx:
+    image: nginx:1.27
+    env_file:
+      - ./env/.env.ngx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - static_volume:/src/staticfiles
+    depends_on:
+      - admin_panel
+      - postgres_db
+      - init_db_etl
+    ports:
+      - "${NGINX_PORT:-80}:80"
+
+  admin_panel:
+    container_name: admin_panel
+    env_file:
+      - ./env/.env.db
+      - ./env/.env.django
+    build: ./admin_panel_movies
+    volumes:
+      - static_volume:/src/staticfiles
+    ports:
+      - '${DJANGO_PORT:-8000}:8000'
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+
+  postgres_db:
+    image: postgres:17.4
+    env_file:
+      - ./env/.env.db
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - '${POSTGRES_PORT:-5432}:5432'
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U app -d movies_database' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
+  static_volume:
