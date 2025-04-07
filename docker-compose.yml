@@ -55,6 +55,38 @@ services:
       timeout: 5s
       retries: 5
 
+  elasticsearch:
+    image: elasticsearch:8.17.3
+    env_file:
+      - ./env/.env.elastic
+    environment:
+      ES_JAVA_OPTS: -Xms2g -Xmx2g
+      ELASTIC_USERNAME: admin
+      ELASTIC_PASSWORD: 123
+      discovery.type: single-node
+      xpack.security.enabled: false
+    volumes:
+      - elastic_volume:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    healthcheck:
+      test: curl -s http://localhost:9200/_cluster/health || exit 1
+      interval: 5s
+      retries: 10
+      start_period: 15s
+
+  elasticsearch-init:
+    build: ./init/elasticsearch
+    container_name: elasticsearch-init
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    working_dir: /app
+    command: [ "python", "init_elasticsearch.py" ]
+
+
 volumes:
   pgdata:
   static_volume:
+  elastic_volume:

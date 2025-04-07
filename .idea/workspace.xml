@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99945434-d314-4984-b031-766800c2b606" name="Changes" comment="edit gitignore">
+      <change afterPath="$PROJECT_DIR$/configs/elasticsearch/config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env/.env.elastic" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/init/elasticsearch/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/init/elasticsearch/default_mapping.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/init/elasticsearch/init_elasticsearch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="django_admin_panel" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,6 +48,8 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Docker.docker-compose.yml.elasticsearch-init: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.elasticsearch: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.docker-compose.yml.init_db_etl: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.docker-compose.yml.postgres_db: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
@@ -51,7 +59,7 @@
     &quot;Python.test.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;elastic__etl&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/domit/PycharmProjects/Movies&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
@@ -62,11 +70,11 @@
       <recent name="C:\Users\domit\PycharmProjects\Movies" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\domit\PycharmProjects\Movies\init\elasticsearch" />
       <recent name="C:\Users\domit\PycharmProjects\Movies" />
       <recent name="C:\Users\domit\PycharmProjects\Movies\admin_panel\admin_panel_movies" />
       <recent name="C:\Users\domit\PycharmProjects\Movies\admin_panel" />
       <recent name="C:\Users\domit\PycharmProjects\Movies\init_db_etl" />
-      <recent name="C:\Users\domit\PycharmProjects\Movies\admin_panel_movies\movies\models" />
     </key>
   </component>
   <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
@@ -112,12 +120,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml.init_db_etl: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yml.elasticsearch-init: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="init_db_etl" />
+              <option value="elasticsearch-init" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
@@ -125,12 +133,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml.postgres_db: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yml.elasticsearch: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="postgres_db" />
+              <option value="elasticsearch" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
@@ -148,11 +156,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.elasticsearch-init: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.elasticsearch: Compose Deployment" />
         <item itemvalue="Python.main" />
         <item itemvalue="Docker.init_db_etl/Dockerfile" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.postgres_db: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.init_db_etl: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -188,7 +196,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741728576815</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="edit gitignore">
+      <option name="closed" value="true" />
+      <created>1741730558121</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741730558121</updated>
+    </task>
+    <task id="LOCAL-00004" summary="edit gitignore">
+      <option name="closed" value="true" />
+      <created>1741730677691</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741730677691</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="UnknownFeatures">
