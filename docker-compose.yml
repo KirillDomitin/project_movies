@@ -92,9 +92,14 @@ services:
     depends_on:
       elasticsearch:
         condition: service_healthy
-    working_dir: /app
-    command: [ "python", "init_elasticsearch.py" ]
 
+  etl:
+    build: ./ETL
+    container_name: etl
+    env_file: ./env/.env.etl
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
 
 volumes:
   pgdata:

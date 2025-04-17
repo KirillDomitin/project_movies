@@ -4,14 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99945434-d314-4984-b031-766800c2b606" name="Changes" comment="edit gitignore">
-      <change afterPath="$PROJECT_DIR$/configs/elasticsearch/config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/env/.env.elastic" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/init/elasticsearch/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/init/elasticsearch/default_mapping.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/init/elasticsearch/init_elasticsearch.py" afterDir="false" />
+    <list default="true" id="99945434-d314-4984-b031-766800c2b606" name="Changes" comment="add kibana">
+      <change afterPath="$PROJECT_DIR$/ETL/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ETL/const.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ETL/etl_components/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ETL/etl_components/elastic_loader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ETL/etl_components/postgres_enricher.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ETL/etl_components/postgres_merger.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ETL/etl_components/postgres_producer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ETL/etl_components/transformer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ETL/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ETL/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ETL/state_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Movies.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Movies.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_panel_movies/config/components/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_panel_movies/config/components/common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_panel_movies/movies/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/admin_panel_movies/movies/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies_database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/movies_database.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,39 +57,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.docker-compose.yml.elasticsearch-init: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.elasticsearch: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.init_db_etl: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.postgres_db: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.init_db_etl/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;elastic__etl&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/domit/PycharmProjects/Movies&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.docker-compose.yml.elasticsearch-init: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.elasticsearch: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.etl: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.init_db_etl: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.postgres_db: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.init_db_etl/Dockerfile.executor": "Run",
+    "Python.main (1).executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.test (1).executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "elastic__etl",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/domit/PycharmProjects/Movies",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\domit\PycharmProjects\Movies" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\domit\PycharmProjects\Movies\ETL\extractor" />
       <recent name="C:\Users\domit\PycharmProjects\Movies\init\elasticsearch" />
       <recent name="C:\Users\domit\PycharmProjects\Movies" />
       <recent name="C:\Users\domit\PycharmProjects\Movies\admin_panel\admin_panel_movies" />
       <recent name="C:\Users\domit\PycharmProjects\Movies\admin_panel" />
-      <recent name="C:\Users\domit\PycharmProjects\Movies\init_db_etl" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Docker.docker-compose.yml.etl: Compose Deployment">
+    <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Movies" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,11 +100,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/init_db_etl" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ETL" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/init_db_etl/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ETL/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -146,21 +159,26 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="init_db_etl/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
+    <configuration name="docker-compose.yml.etl: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
         <settings>
-          <option name="sourceFilePath" value="init_db_etl/Dockerfile" />
+          <option name="services">
+            <list>
+              <option value="etl" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml.etl: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Python.main (1)" />
         <item itemvalue="Docker.docker-compose.yml.elasticsearch-init: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.elasticsearch: Compose Deployment" />
-        <item itemvalue="Python.main" />
-        <item itemvalue="Docker.init_db_etl/Dockerfile" />
       </list>
     </recent_temporary>
   </component>
@@ -212,7 +230,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741730677691</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add elasticsearch mapping">
+      <option name="closed" value="true" />
+      <created>1744049915997</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1744049915997</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add kibana">
+      <option name="closed" value="true" />
+      <created>1744051408660</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744051408660</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -224,6 +258,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="edit gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit gitignore" />
+    <MESSAGE value="add elasticsearch mapping" />
+    <MESSAGE value="add kibana" />
+    <option name="LAST_COMMIT_MESSAGE" value="add kibana" />
   </component>
 </project>

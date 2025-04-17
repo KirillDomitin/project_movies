@@ -20,7 +20,7 @@ class GenreFilmWorkInline(admin.TabularInline):
 
 @admin.register(FilmWork)
 class FilmWorkAdmin(admin.ModelAdmin):
-    list_display = ("title", "type", "rating", "creation_date")
+    list_display = ("title", "type", "rating", "modified_at")
     search_fields = ("title",)
     list_filter = ("type", "creation_date")
     inlines = [PersonFilmWorkInline, GenreFilmWorkInline]  # Добавляем связь персон в админке фильма
