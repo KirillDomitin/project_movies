@@ -1,3 +1,4 @@
+SET TIME ZONE 'UTC';
 CREATE SCHEMA IF NOT EXISTS content;
 
 -- Таблица с информацией о фильмах
