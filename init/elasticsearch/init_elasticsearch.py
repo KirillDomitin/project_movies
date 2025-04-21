@@ -1,5 +1,6 @@
 import json
 import time
+
 import requests
 
 ES_HOST = "http://elasticsearch:9200"
@@ -26,7 +27,7 @@ def create_index_if_missing():
         r = requests.head(f"{ES_HOST}/{INDEX_NAME}")
         if r.status_code == 404:
             print(f"Index '{INDEX_NAME}' does not exist. Creating...")
-            with open(MAPPING_FILE, 'r') as f:
+            with open(MAPPING_FILE, "r") as f:
                 mapping = json.load(f)
             create = requests.put(f"{ES_HOST}/{INDEX_NAME}", json=mapping)
             print(f"Index created: {create.status_code} - {create.text}")
