@@ -6,9 +6,9 @@ logger = logging.getLogger(__name__)
 
 
 class ElasticLoader:
-    def __init__(self, host: str, index: str):
+    def __init__(self, client: Elasticsearch, index: str):
         self.index = index
-        self.client = Elasticsearch(hosts=[host])
+        self.client = client
 
     def ensure_index(self, mapping: Dict):
         if not self.client.indices.exists(index=self.index):
