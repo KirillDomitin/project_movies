@@ -4,6 +4,13 @@ from functools import wraps
 
 
 def backoff(start_sleep_time=0.1, factor=2, border_sleep_time=10):
+    """
+    Повторное выполнение функции с экспоненциальной задержкой при возникновении исключения.
+
+    Формула задержки:
+        t = start_sleep_time * (factor ** n), пока t < border_sleep_time
+        t = border_sleep_time, если t >= border_sleep_time
+    """
     def func_wrapper(func):
         @wraps(func)
         def inner(*args, **kwargs):

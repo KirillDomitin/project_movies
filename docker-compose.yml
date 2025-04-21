@@ -1,7 +1,7 @@
 
 services:
   init_db_etl:
-    build: ./init_db_etl
+    build: init/init_db_etl
     env_file:
       - ./env/.env.db
     container_name: init_db_etl
