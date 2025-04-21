@@ -6,7 +6,9 @@ from typing import List
 import psycopg
 
 # Настройка логирования
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 
 class SqliteEngine:
@@ -81,7 +83,9 @@ class PostgresEngine:
         :param table_name: Название таблицы.
         """
         try:
-            self.cursor.execute(f"TRUNCATE TABLE {table_name} RESTART IDENTITY CASCADE;")
+            self.cursor.execute(
+                f"TRUNCATE TABLE {table_name} RESTART IDENTITY CASCADE;"
+            )
             self.connection.commit()
         except psycopg.Error as e:
             logging.error(f"Ошибка при очистке таблицы {table_name}: {e}")
@@ -97,8 +101,8 @@ class PostgresEngine:
 
         try:
             columns = asdict(data[0]).keys()
-            columns_str = ', '.join(columns)
-            values_str = ', '.join([f"%s" for _ in columns])
+            columns_str = ", ".join(columns)
+            values_str = ", ".join([f"%s" for _ in columns])
             query = f"INSERT INTO {table_name} ({columns_str}) VALUES ({values_str})"
             batch = [tuple(asdict(d)[col] for col in columns) for d in data]
             self.cursor.executemany(query, batch)

@@ -5,7 +5,7 @@ DSN = {
     "user": os.getenv("POSTGRES_USER", "app"),
     "password": os.getenv("POSTGRES_PASSWORD", "123qwe"),
     "host": os.getenv("POSTGRES_HOST", "postgres"),
-    "port": os.getenv("POSTGRES_PORT", "5432")
+    "port": os.getenv("POSTGRES_PORT", "5432"),
 }
 
 tables = [

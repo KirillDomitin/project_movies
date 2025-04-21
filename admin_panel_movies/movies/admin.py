@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from .models import FilmWork, Genre, Person, PersonFilmWork, GenreFilmWork
 
 
@@ -23,7 +24,10 @@ class FilmWorkAdmin(admin.ModelAdmin):
     list_display = ("title", "type", "rating", "modified_at")
     search_fields = ("title",)
     list_filter = ("type", "creation_date")
-    inlines = [PersonFilmWorkInline, GenreFilmWorkInline]  # Добавляем связь персон в админке фильма
+    inlines = [
+        PersonFilmWorkInline,
+        GenreFilmWorkInline,
+    ]  # Добавляем связь персон в админке фильма
 
 
 @admin.register(Genre)

@@ -9,18 +9,18 @@ class PostgresMerger:
 
     def get_merged_data(self):
 
-        placeholders = ', '.join(['%s'] * len(self.enriched_data))
+        placeholders = ", ".join(["%s"] * len(self.enriched_data))
         query = f"""
                 SELECT
-                    fw.id as fw_id, 
-                    fw.title, 
-                    fw.description, 
-                    fw.rating, 
-                    fw.type, 
-                    fw.created_at, 
-                    fw.modified_at, 
-                    pfw.role, 
-                    p.id, 
+                    fw.id as fw_id,
+                    fw.title,
+                    fw.description,
+                    fw.rating,
+                    fw.type,
+                    fw.created_at,
+                    fw.modified_at,
+                    pfw.role,
+                    p.id,
                     p.full_name,
                     g.name
                 FROM content.film_work fw

@@ -3,13 +3,18 @@ import time
 
 from const import DSN, tables, ELASTIC_HOST
 from db import get_pg_connection, get_el_connection
-from etl_components import PostgresProducer, PostgresEnricher, PostgresMerger, FilmworkTransformer, ElasticLoader
+from etl_components import (
+    PostgresProducer,
+    PostgresEnricher,
+    PostgresMerger,
+    FilmworkTransformer,
+    ElasticLoader,
+)
 from state_manager import ETLStateManager
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s"
+    level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s"
 )
 
 
@@ -31,7 +36,7 @@ def main():
         try:
             pg_connection = get_pg_connection(DSN)
             elastic_connection = get_el_connection(ELASTIC_HOST)
-            with pg_connection as conn:
+            with pg_connection as conn, elastic_connection as client:
                 for table_name in tables:
                     state_manager = ETLStateManager(conn)
                     last_modified = state_manager.get_last_sync(table_name)
@@ -68,7 +73,6 @@ def main():
 
                     # запись в Elasticsearch
                     try:
-                        client = get_el_connection(ELASTIC_HOST)
                         loader = ElasticLoader(client, "movies")
                         loader.load(documents)
                     except BaseException as exc:
@@ -81,5 +85,5 @@ def main():
             continue
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

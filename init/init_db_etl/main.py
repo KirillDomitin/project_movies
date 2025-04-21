@@ -5,22 +5,26 @@ from db_engine import SqliteEngine, PostgresEngine
 from utils import prepare_data
 
 # Настройка логирования
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 # Параметры подключения
-DB_PATH = 'db.sqlite'
+DB_PATH = "db.sqlite"
 DSN = {
     "dbname": os.getenv("POSTGRES_DB"),
     "user": os.getenv("POSTGRES_USER"),
     "password": os.getenv("POSTGRES_PASSWORD"),
     "host": os.getenv("POSTGRES_HOST"),
-    "port": os.getenv("POSTGRES_PORT")
+    "port": os.getenv("POSTGRES_PORT"),
 }
 BATCH_SIZE = 100
 SCHEMA = "content"
 
 
-def migrate_table(sqlite_engine: SqliteEngine, postgres_engine: PostgresEngine, table: str):
+def migrate_table(
+    sqlite_engine: SqliteEngine, postgres_engine: PostgresEngine, table: str
+):
     """
     Переносит данные из SQLite в PostgreSQL для одной таблицы.
     :param sqlite_engine: Экземпляр SQLite движка.
@@ -61,5 +65,5 @@ def main():
     logging.info("Миграция данных завершена")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

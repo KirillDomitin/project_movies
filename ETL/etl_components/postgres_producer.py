@@ -11,7 +11,9 @@ class PostgresProducer:
         self.last_modified = last_modified
 
     def get_updated_data(self):
-        logger.info(f"Checking for updates in table '{self.table_name}' after {self.last_modified.isoformat()}")
+        logger.info(
+            f"Checking for updates in table '{self.table_name}' after {self.last_modified.isoformat()}"
+        )
 
         query = f"""
             SELECT id, modified_at
@@ -31,5 +33,6 @@ class PostgresProducer:
         last_modified = rows[-1][1]
 
         logger.info(
-            f"Fetched {len(ids)} updated records from '{self.table_name}', latest modified_at: {last_modified.isoformat()}")
+            f"Fetched {len(ids)} updated records from '{self.table_name}', latest modified_at: {last_modified.isoformat()}"
+        )
         return {"ids": ids, "last_modified": last_modified}
