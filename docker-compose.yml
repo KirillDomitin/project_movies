@@ -83,13 +83,6 @@ services:
       elasticsearch:
         condition: service_healthy
 
-  elasticsearch-init:
-    build: ./init/elasticsearch
-    container_name: elasticsearch-init
-    depends_on:
-      elasticsearch:
-        condition: service_healthy
-
   etl:
     build: ./ETL
     container_name: etl
@@ -99,8 +92,10 @@ services:
         condition: service_healthy
 
 volumes:
-  shared_pg_data:
-    name: shared_pg_data
-  redis_volume:
-  static_volume:
+  postgres_volume:
+    name: postgres_volume
   elastic_volume:
+    name: elastic_volume
+  redis_volume:
+    name: redis
+  static_volume:

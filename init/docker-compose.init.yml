@@ -1,12 +1,43 @@
 services:
 
+  elasticsearch:
+    image: elasticsearch:8.17.3
+    env_file:
+      - .env
+    environment:
+      ES_JAVA_OPTS: -Xms2g -Xmx2g
+      ELASTIC_USERNAME: admin
+      ELASTIC_PASSWORD: 123
+      discovery.type: single-node
+      xpack.security.enabled: false
+    volumes:
+      - elastic_volume:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    healthcheck:
+      test: curl -s http://localhost:9200/_cluster/health || exit 1
+      interval: 5s
+      retries: 10
+      start_period: 15s
+
+  init_elasticsearch:
+    build: elasticsearch
+    env_file:
+      - .env
+    container_name: init_elasticsearch
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    restart: no
+
   postgres_db:
     image: postgres:17.4
     env_file:
       - .env
     volumes:
       - ./ddl:/docker-entrypoint-initdb.d
-      - shared_pg_data:/var/lib/postgresql/data
+      - postgres_volume:/var/lib/postgresql/data
     ports:
       - '${POSTGRES_PORT:-5432}:5432'
     healthcheck:
@@ -23,9 +54,13 @@ services:
     depends_on:
       postgres_db:
         condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
     restart: no
     entrypoint: [ "./wait-for-postgres.sh", "postgres_db", "python", "main.py" ]
 
 volumes:
-  shared_pg_data:
-    name: shared_pg_data
+  postgres_volume:
+    name: postgres_volume
+  elastic_volume:
+    name: elastic_volume
