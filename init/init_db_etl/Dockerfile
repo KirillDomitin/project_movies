@@ -10,6 +10,3 @@ RUN apt-get update &&  \
 
 # Делаем скрипт исполняемым
 RUN chmod +x /app/wait-for-postgres.sh
-
-# Указываем рабочую директорию
-ENTRYPOINT ["/wait-for-postgres.sh"]

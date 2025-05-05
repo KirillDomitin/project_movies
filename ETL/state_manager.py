@@ -16,7 +16,7 @@ class ETLStateManager:
             with self.conn.cursor() as cur:
                 cur.execute(
                     "SELECT last_modified FROM etl_state WHERE table_name = %s",
-                    (table,)
+                    (table,),
                 )
                 row = cur.fetchone()
                 if row:
@@ -26,17 +26,19 @@ class ETLStateManager:
         except (Error, OperationalError) as e:
             logger.warning(f"PostgreSQL unavailable. Using local state: {e}")
             raise
-        # return datetime.min
 
     def set_last_sync(self, table: str, value: datetime):
         try:
             with self.conn.cursor() as cur:
-                cur.execute("""
+                cur.execute(
+                    """
                     INSERT INTO etl_state (table_name, last_modified)
                     VALUES (%s, %s)
                     ON CONFLICT (table_name) DO UPDATE
                     SET last_modified = EXCLUDED.last_modified;
-                """, (table, value.isoformat()))
+                """,
+                    (table, value.isoformat()),
+                )
             logger.info(f"Updated state for '{table}': {value.isoformat()}")
         except (Error, OperationalError) as e:
             logger.warning(f"Failed to update PostgreSQL: {e}")

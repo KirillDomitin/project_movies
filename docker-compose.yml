@@ -1,15 +1,4 @@
-
 services:
-  init_db_etl:
-    build: init/init_db_etl
-    env_file:
-      - ./env/.env.db
-    container_name: init_db_etl
-    depends_on:
-      postgres_db:
-        condition: service_healthy
-    restart: "no"
-    entrypoint: ["./wait-for-postgres.sh", "postgres_db", "python", "main.py"]
 
   nginx:
     image: nginx:1.27
@@ -22,7 +11,6 @@ services:
     depends_on:
       - admin_panel
       - postgres_db
-      - init_db_etl
     ports:
       - "${NGINX_PORT:-80}:80"
 
@@ -45,8 +33,7 @@ services:
     env_file:
       - ./env/.env.db
     volumes:
-      - .:/docker-entrypoint-initdb.d
-      - pgdata:/var/lib/postgresql/data
+      - shared_pg_data:/var/lib/postgresql/data
     ports:
       - '${POSTGRES_PORT:-5432}:5432'
     healthcheck:
@@ -76,6 +63,16 @@ services:
       retries: 10
       start_period: 15s
 
+  redis:
+    image: redis:latest
+    container_name: redis_container
+    env_file:
+      - ./env/.env.redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_volume:/data
+
   kibana:
     image: kibana:8.17.3
     ports:
@@ -102,6 +99,8 @@ services:
         condition: service_healthy
 
 volumes:
-  pgdata:
+  shared_pg_data:
+    name: shared_pg_data
+  redis_volume:
   static_volume:
   elastic_volume:

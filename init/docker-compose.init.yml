@@ -1,0 +1,31 @@
+services:
+
+  postgres_db:
+    image: postgres:17.4
+    env_file:
+      - .env
+    volumes:
+      - ./ddl:/docker-entrypoint-initdb.d
+      - shared_pg_data:/var/lib/postgresql/data
+    ports:
+      - '${POSTGRES_PORT:-5432}:5432'
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U app -d movies_database' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  db_etl:
+    build: init_db_etl
+    env_file:
+      - .env
+    container_name: init_db_etl
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+    restart: no
+    entrypoint: [ "./wait-for-postgres.sh", "postgres_db", "python", "main.py" ]
+
+volumes:
+  shared_pg_data:
+    name: shared_pg_data

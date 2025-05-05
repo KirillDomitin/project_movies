@@ -9,7 +9,7 @@ class PostgresEnricher:
     def get_enriched_data(self):
         enriched_ids = []
         while True:
-            placeholders = ', '.join(['%s'] * len(self.updated_data))
+            placeholders = ", ".join(["%s"] * len(self.updated_data))
             query = f"""
                     SELECT fw.id
                     FROM content.film_work fw

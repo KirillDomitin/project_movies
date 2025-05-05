@@ -34,15 +34,13 @@ def film_work(row):
         certificate="",
         file_path=row["file_path"],
         created_at=datetime.now(timezone.utc),
-        modified_at=datetime.now(timezone.utc)
+        modified_at=datetime.now(timezone.utc),
     )
 
 
 def genre_film_work(row):
     return GenreFilmWork(
-        id=row["id"],
-        genre_id=row["genre_id"],
-        film_work_id=row["film_work_id"]
+        id=row["id"], genre_id=row["genre_id"], film_work_id=row["film_work_id"]
     )
 
 
@@ -51,7 +49,7 @@ def person_film_work(row):
         id=row["id"],
         role=row["role"],
         person_id=row["person_id"],
-        film_work_id=row["film_work_id"]
+        film_work_id=row["film_work_id"],
     )
 
 

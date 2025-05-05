@@ -1,6 +1,7 @@
 import logging
-from elasticsearch import Elasticsearch, helpers
 from typing import List, Dict
+
+from elasticsearch import Elasticsearch, helpers
 
 logger = logging.getLogger(__name__)
 
@@ -23,15 +24,13 @@ class ElasticLoader:
             return
 
         actions = [
-            {
-                "_index": self.index,
-                "_id": doc["id"],
-                "_source": doc
-            }
+            {"_index": self.index, "_id": doc["id"], "_source": doc}
             for doc in documents
         ]
 
-        logger.info(f"Loading {len(actions)} documents into Elasticsearch index '{self.index}'")
+        logger.info(
+            f"Loading {len(actions)} documents into Elasticsearch index '{self.index}'"
+        )
         success, errors = helpers.bulk(self.client, actions, raise_on_error=False)
 
         logger.info(f"Bulk load completed: {success} successful operations")

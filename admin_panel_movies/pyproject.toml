@@ -3,7 +3,7 @@ name = "movies"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "KirillDomitin",email = "domitin@gmail.com"}
+    { name = "KirillDomitin", email = "domitin@gmail.com" }
 ]
 readme = "README.md"
 requires-python = ">=3.12,<4.0"
@@ -23,4 +23,3 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.1.2"
-
