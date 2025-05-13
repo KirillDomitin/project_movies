@@ -11,6 +11,9 @@ from redis.asyncio import Redis
 FILM_CACHE_EXPIRE_IN_SECONDS = 60 * 5  # 5 минут
 
 
+# FILM_CACHE_EXPIRE_IN_SECONDS = 1
+
+
 class FilmService:
     def __init__(self, redis: Redis, elastic: AsyncElasticsearch):
         self.redis = redis
@@ -22,12 +25,14 @@ class FilmService:
         if not film:
             # Если фильма нет в кеше, то ищем его в Elasticsearch
             film = await self._get_film_from_elastic(film_id)
+            print("Getting from elastic")
             if not film:
                 # Если он отсутствует в Elasticsearch, значит, фильма вообще нет в базе
                 return None
             # Сохраняем фильм в кеш
             await self._put_film_to_cache(film)
 
+        print("Getting from cache")
         return film
 
     async def _get_film_from_elastic(self, film_id: str) -> Optional[Film]:
@@ -39,7 +44,7 @@ class FilmService:
 
     async def _film_from_cache(self, film_id: str) -> Optional[Film]:
         # Пытаемся получить данные о фильме из кеша, используя команду
-        data = await self.redis.get(film_id)
+        data = await self.redis.get(str(film_id))
         if not data:
             return None
 
@@ -48,7 +53,7 @@ class FilmService:
         return film
 
     async def _put_film_to_cache(self, film: Film):
-        await self.redis.set(film.id, film.json(), FILM_CACHE_EXPIRE_IN_SECONDS)
+        await self.redis.set(str(film.id), film.json(), FILM_CACHE_EXPIRE_IN_SECONDS)
 
 
 @lru_cache()

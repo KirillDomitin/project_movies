@@ -22,7 +22,7 @@ class ElasticLoader:
         if not documents:
             logger.info("No documents to load into Elasticsearch")
             return
-
+        print(documents)
         actions = [
             {"_index": self.index, "_id": doc["id"], "_source": doc}
             for doc in documents

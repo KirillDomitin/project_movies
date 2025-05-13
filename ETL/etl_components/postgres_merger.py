@@ -8,12 +8,12 @@ class PostgresMerger:
         self.enriched_data = enriched_data
 
     def get_merged_data(self):
-
         placeholders = ", ".join(["%s"] * len(self.enriched_data))
         query = f"""
                 SELECT
                     fw.id as fw_id,
                     fw.title,
+                    fw.creation_date,
                     fw.description,
                     fw.rating,
                     fw.type,

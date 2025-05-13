@@ -48,6 +48,12 @@
       "imdb_rating": {
         "type": "float"
       },
+      "type": {
+        "type": "keyword"
+      },
+      "creation_date": {
+        "type": "integer"
+      },
       "genres": {
         "type": "keyword"
       },

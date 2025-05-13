@@ -17,6 +17,8 @@ class FilmworkTransformer:
                     "imdb_rating": row["rating"],
                     "title": row["title"],
                     "description": row["description"],
+                    "creation_date": row["creation_date"],
+                    "type": row["type"],
                     "genres": set(),
                     "directors": {},
                     "actors": {},
